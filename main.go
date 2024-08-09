@@ -1,10 +1,9 @@
 package main
 
 import (
-	"github.com/ImTheCurse/jelly/pkg/sms"
+	"github.com/ImTheCurse/jelly/pkg/email"
 	"github.com/joho/godotenv"
 	"log"
-	"os"
 )
 
 func main() {
@@ -12,7 +11,6 @@ func main() {
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
-	msg := Message.NewSMS(os.Getenv("TO_NUMBER"), "Hello World!")
-	srcNumber := os.Getenv("TWILLO_PHONE_NUMBER")
-	msg.Send(srcNumber)
+	e := email.New("Hello test", []string{"example@gmail.com"}, "Hello World!")
+	e.SendMail()
 }
